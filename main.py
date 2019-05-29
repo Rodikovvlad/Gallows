@@ -59,7 +59,8 @@ def start(word, mass_symb):
                 mistakes += 1
             print()
             print(Fore.YELLOW+"КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: "+Fore.GREEN+str(mistakes), end="")
-            print(" | "+ Fore.YELLOW+f"ОСТАЛОСЬ ПОПЫТОК: {20-i}")
+            print(" | "+ Fore.YELLOW+f"ОСТАЛОСЬ ПОПЫТОК: ", end="")
+            print(Fore.GREEN + f"{20-i}")
             print(Fore.YELLOW+"ВВЕДЕННЫЕ БУКВЫ: ", end="")
             print(Fore.GREEN,end="")
             print(inp_letters)
