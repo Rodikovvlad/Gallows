@@ -94,9 +94,10 @@ def start(word, mass_symb):
             print(Fore.YELLOW + "КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: " + Fore.GREEN + str(mistakes), end="")
             print(" | " + Fore.YELLOW + f"ОСТАЛОСЬ ХОДОВ: ", end="")
             print(Fore.GREEN + f"{19 - i}")
-            print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
-            print(Fore.GREEN, end="")
-            print(inp_letters)
+            if len(inp_letters) > 0:
+                print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
+                print(Fore.GREEN, end="")
+                print(inp_letters)
             print()
             for l in mass_symb:
                 print(l + " ", end="")
@@ -112,9 +113,10 @@ def start(word, mass_symb):
             print(Fore.YELLOW + "КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: " + Fore.GREEN + str(mistakes), end="")
             print(" | " + Fore.YELLOW + f"ОСТАЛОСЬ ХОДОВ: ", end="")
             print(Fore.GREEN + f"{19 - i}")
-            print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
-            print(Fore.GREEN, end="")
-            print(inp_letters)
+            if len(inp_letters) > 0:
+                print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
+                print(Fore.GREEN, end="")
+                print(inp_letters)
             print()
             for l in mass_symb:
                 print(l + " ", end="")
