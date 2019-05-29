@@ -24,8 +24,8 @@
    'e:\\programs\\python\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
    'PYSOURCE'),
   ('main', 'F:\\PythonProjects\\Suicide\\main.py', 'PYSOURCE'),
-  ('VCRUNTIME140.dll', 'e:\\programs\\python\\VCRUNTIME140.dll', 'BINARY'),
   ('python37.dll', 'e:\\programs\\python\\python37.dll', 'BINARY'),
+  ('VCRUNTIME140.dll', 'e:\\programs\\python\\VCRUNTIME140.dll', 'BINARY'),
   ('_ssl', 'e:\\programs\\python\\DLLs\\_ssl.pyd', 'EXTENSION'),
   ('pyexpat', 'e:\\programs\\python\\DLLs\\pyexpat.pyd', 'EXTENSION'),
   ('unicodedata', 'e:\\programs\\python\\DLLs\\unicodedata.pyd', 'EXTENSION'),
@@ -53,7 +53,7 @@
  [],
  False,
  False,
- 1559143552,
+ 1559146635,
  [('run.exe',
    'e:\\programs\\python\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',
    'EXECUTABLE')])

@@ -3,6 +3,7 @@ from colorama import init
 from colorama import Fore
 import requests, bs4
 from time import sleep
+import sys
 
 
 init(autoreset=True)
@@ -42,29 +43,83 @@ def start(word, mass_symb):
             break
         print()
         letter = input("Введите букву: ").lower()
-        inp_letters.add(letter)
         print()
-        if letter in mass_symb:
-            print(Fore.RED+"ЭТА БУКВА УЖЕ ЕСТЬ В СЛОВЕ!")
-            print(Fore.RED+"ВВЕДИТЕ ДРУГУЮ БУКВУ!")
-        else:
-            for k in range(len(word)):
-                if letter == word[k]:
-                    mass_symb[k] = letter
-                    count += 1
-            for l in mass_symb:
-                print(l + " ", end="")
-            print(Fore.CYAN+"  <------ СЛОВО, КОТОРОЕ НАДО УГАДАТЬ")
-            if letter not in mass_symb:
-                mistakes += 1
+        if len(letter) == 1 and letter.isalpha() and letter not in "qwertyuiopasdfghjklzxcvbnm":
+            inp_letters.add(letter)
             print()
-            print(Fore.YELLOW+"КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: "+Fore.GREEN+str(mistakes), end="")
-            print(" | "+ Fore.YELLOW+f"ОСТАЛОСЬ ПОПЫТОК: ", end="")
-            print(Fore.GREEN + f"{20-i}")
-            print(Fore.YELLOW+"ВВЕДЕННЫЕ БУКВЫ: ", end="")
-            print(Fore.GREEN,end="")
+            if letter in mass_symb:
+                print(Fore.RED+"ЭТА БУКВА УЖЕ ЕСТЬ В СЛОВЕ!")
+                print(Fore.RED+"ВВЕДИТЕ ДРУГУЮ БУКВУ!")
+                print(Fore.YELLOW + "КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: " + Fore.GREEN + str(mistakes), end="")
+                print(" | " + Fore.YELLOW + f"ОСТАЛОСЬ ХОДОВ: ", end="")
+                print(Fore.GREEN + f"{19 - i}")
+                print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
+                print(Fore.GREEN, end="")
+                print(inp_letters)
+                print()
+                for l in mass_symb:
+                    print(l + " ", end="")
+                print()
+            else:
+                for k in range(len(word)):
+                    if letter == word[k]:
+                        mass_symb[k] = letter
+                        count += 1
+                for l in mass_symb:
+                    print(l + " ", end="")
+                print(Fore.CYAN+"  <------ СЛОВО, КОТОРОЕ НАДО УГАДАТЬ")
+                if letter not in mass_symb:
+                    mistakes += 1
+                print()
+                if 19 - i == 0:
+                    print(Fore.RED + "ВЫ ПРОИГРАЛИ!")
+                    print(Fore.RED + "СЛОВО, КОТОРОЕ ВЫ НЕ СМОГЛИ ОТГАДАТЬ: " + Fore.GREEN + word)
+                    input()
+                    sys.exit()
+                print(Fore.YELLOW+"КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: "+Fore.GREEN+str(mistakes), end="")
+                print(" | "+ Fore.YELLOW+f"ОСТАЛОСЬ ХОДОВ: ", end="")
+                print(Fore.GREEN + f"{19-i}")
+                print(Fore.YELLOW+"ВВЕДЕННЫЕ БУКВЫ: ", end="")
+                print(Fore.GREEN,end="")
+                print(inp_letters)
+                print()
+        elif letter in "qwertyuiopasdfghjklzxcvbnm":
+            if 19 - i == 0:
+                print(Fore.RED + "ВЫ ПРОИГРАЛИ!")
+                print(Fore.RED + "СЛОВО, КОТОРОЕ ВЫ НЕ СМОГЛИ ОТГАДАТЬ: "+ Fore.GREEN + word)
+                input()
+                sys.exit()
+            mistakes += 1
+            print(Fore.RED+"ВЫ ВВЕЛИ АНГЛИЙСКУЮ БУКВУ, ОТГАДАВЫЕМОЕ СЛОВО НА РУССКОМ ЯЗЫКЕ!")
+            print(Fore.YELLOW + "КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: " + Fore.GREEN + str(mistakes), end="")
+            print(" | " + Fore.YELLOW + f"ОСТАЛОСЬ ХОДОВ: ", end="")
+            print(Fore.GREEN + f"{19 - i}")
+            print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
+            print(Fore.GREEN, end="")
             print(inp_letters)
             print()
+            for l in mass_symb:
+                print(l + " ", end="")
+            print()
+        else:
+            if 19 - i == 0:
+                print(Fore.RED + "ВЫ ПРОИГРАЛИ!")
+                print(Fore.RED + "СЛОВО, КОТОРОЕ ВЫ НЕ СМОГЛИ ОТГАДАТЬ: "+ Fore.GREEN + word)
+                input()
+                sys.exit()
+            mistakes += 1
+            print(Fore.RED+"НЕВЕРНЫЙ ВВОД!")
+            print(Fore.YELLOW + "КОЛ-ВО НЕВЕРНЫХ ПОПЫТОК: " + Fore.GREEN + str(mistakes), end="")
+            print(" | " + Fore.YELLOW + f"ОСТАЛОСЬ ХОДОВ: ", end="")
+            print(Fore.GREEN + f"{19 - i}")
+            print(Fore.YELLOW + "ВВЕДЕННЫЕ БУКВЫ: ", end="")
+            print(Fore.GREEN, end="")
+            print(inp_letters)
+            print()
+            for l in mass_symb:
+                print(l + " ", end="")
+            print()
+
 
 # Создание подчеркиваний
 def set_symbols(word):
@@ -100,7 +155,7 @@ def main():
     word = choice(words)
     mass_symb = set_symbols(word)
     start(word, mass_symb)
-    input()
+
 
 
 if __name__ == "__main__":
